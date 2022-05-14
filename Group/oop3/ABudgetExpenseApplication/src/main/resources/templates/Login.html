@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spendi.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css" />
+
+<style>
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 8px;
+ background-color: teal;
+ color: #fff;
+}
+h4{
+font-weight: bold;
+font-size: 30px;
+padding: 50px;
+}
+h1{
+
+font-size: 68px;
+}
+h2{
+font-style: italic;
+font-size: 38px;
+}
+h3{
+
+font-size: 60px;
+}
+.logo {
+ font-size: 38px;
+}
+body {
+ font-family: Trebuchet MS;
+ text-align:center;
+ position: relative;
+ min-height:100vh; margin:0;
+}
+
+
+a {
+ text-decoration: none;
+ padding: 5px 14px;
+}
+
+
+li {
+ list-style: none;
+}
+
+
+
+.w3-container {
+ display: flex;
+ gap: 0.10em;
+ font-size: 16px;
+}
+#how-it-works {
+padding: 120px;
+}
+
+.quote{
+padding: 130px;
+}
+
+#what-is-Spendi{
+padding: 150px;
+}
+
+#get-started{
+padding: 125px;
+}
+#section1 {
+padding: 120px;
+}
+
+p{
+font-size: 25px;
+}
+p.intro{
+font-size: 30px;
+font-style: italic;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  display: block;
+  background-color: #2F4F4F;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  
+  
+}
+body::after {
+  content: '';
+  display: block;
+  height: 50px; /* Set same as footer's height */
+}
+.foot{
+font-size: 18px;
+color: white;
+}
+
+
+</style>
+</head>
+
+  
+   <body>
+   <nav class="navbar">
+ <div class="logo">Spendi</div>
+<div class="w3-container">
+<div class="w3-bar w3-light-grey">
+
+   <a class="w3-bar-item w3-button" th:href="@{/register}">Register</a>
+    <a class="w3-bar-item w3-button" th:href="@{/login}">Login</a>
+     </div> </div>
+     </nav>
+     <br/> <br/>
+     <div class="section one" id="section1">
+    
+   
+  <h1>Welcome to Spendi</h1>
+  <h2>Your personal expense diary</h2>
+   </div>
+   
+   <div class="quote">
+   <span style="font-size:150px;line-height:0.6em;opacity:0.2"> &#10077</span>
+   <p style="margin-top:-40px">Financial prosperity is impossible without 
+   constant planning and management of money </p>
+  </div>
+   
+  <div class="section two" id="what-is-Spendi"> 
+  <h2>Spendi is a financial management systems 
+  that works as a diary allowing you to log your weekly, monthly or yearly expenses </h2>
+  </div>
+  <div class="section3" id="get-started">
+  <p>Do you want to start controlling your spending, track your 
+  expenses, and save more money? Sign up for Spendi </p>
+   <h2> &rarr; Get Started!</h2>
+  </div>
+ <footer>
+  <p class="foot">Spendi &copy; 2022</p>
+</footer>
+</body>
+</html>

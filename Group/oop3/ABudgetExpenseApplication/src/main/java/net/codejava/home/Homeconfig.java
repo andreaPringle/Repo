@@ -1,0 +1,15 @@
+package net.codejava.home;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class Homeconfig {
+	@RequestMapping("/home")
+	public String defectDetails() {
+	    return "home"; //defect-details.html page name to open it
+	}
+
+}

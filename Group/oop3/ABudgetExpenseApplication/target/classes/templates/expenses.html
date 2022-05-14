@@ -1,0 +1,328 @@
+	<!DOCTYPE html>
+	<html  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="ISO-8859-1">
+<title>Spendi.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css" />
+	  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script>
+<script src="https://cdn.datatables.net/searchpanes/2.0.0/js/dataTables.searchPanes.min.js"> </script>
+<script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"> </script>
+<script src="https://code.highcharts.com/highcharts.js"> </script>
+
+
+
+    
+    <script>
+        $(document).ready(function() {
+            $('table thead th').each(function(i=2) {
+                calculateColumn(2);
+            });
+        });
+
+        function calculateColumn(index) {
+            var total = 0;
+            $('table tr').each(function() {
+                var value = parseFloat($('td', this).eq(index).text());
+                if (!isNaN(value)) {
+                    total += value;
+                }
+            });
+            $('table tfoot td').eq(index).text('Total: ' + total);
+            console.log(total);
+            document.getElementById("val").innerHTML = "You have spent  $" + total + " " + " in total";
+        }
+    </script>
+    
+  <!--  <script>
+    $(document).ready(function() {
+    $('#table').DataTable();
+    } ); 
+</script>-->
+	
+	<!-- <script>
+				var table = document.getElementById("table"), sumVal = 0;
+				for (var i = 1; i < table.rows.length; i++)
+				 {
+					sumVal = sumVal + parseInt(table.rows[i]).cell[6].innerHTML;	
+				}
+				document.getElementById("val").innerHTML = "Total = " + sumVal;
+				console.log(sumVal);
+			</script> -->
+	<style>
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 8px;
+ background-color: teal;
+ color: #fff;
+}
+h4{
+font-weight: bold;
+font-size: 30px;
+padding: 50px;
+}
+h1{
+
+font-size: 68px;
+}
+h2{
+font-style: italic;
+font-size: 38px;
+}
+h3{
+
+font-size: 60px;
+}
+.logo {
+ font-size: 38px;
+}
+body {
+ font-family: Arial;
+ text-align:center;
+ 
+}
+
+
+a {
+ text-decoration: none;
+ padding: 5px 14px;
+}
+
+
+li {
+ list-style: none;
+}
+
+
+
+.w3-container {
+ display: flex;
+ gap: 0.10em;
+ font-size: 16px;
+}
+#how-it-works {
+padding: 120px;
+}
+
+#section1 {
+padding: 150px;
+}
+
+p{
+font-size: 25px;
+}
+p.intro{
+font-size: 30px;
+font-style: italic;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  display: block;
+}
+
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+ <div class="logo">Spendi</div>
+<div class="w3-container">
+<div class="w3-bar w3-light-grey">
+
+   <a class="w3-bar-item w3-button" th:href="@{/home}">Home</a>
+    <a th:href="@{/home}" href="#how-it-works" class="w3-bar-item w3-button">How it works</a>
+     
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Expense</button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+       <a th:href="@{/expense/new}" class="w3-bar-item w3-button">Create an expense</a>
+       <a th:href="@{/expenses}" class="w3-bar-item w3-button">Your expenses</a>
+        <a  th:href="@{/category/new}" class="w3-bar-item w3-button">Create a customize category</a>
+      </div>
+      
+    </div>
+    <div class= "w3-bar-item w3-button">
+			<form th:action="@{/logout}" method="post">
+				
+				<input type="submit" value="Sign Out" />
+			</form>
+			</div>
+  </div>
+  
+  </div>
+  
+  </nav>
+
+	
+
+	<h2 id= "val" style = " text-align: center"> This is your money </h2 >	
+
+	<div class="container text-center">
+		<div><h1>Expense List</h1></div>
+	 &nbsp;
+		
+	<div>
+	<table id = "table">
+	<thead class"thead-dark">
+	<tr>
+	<th>ID</th>
+	<th>Expense Date</th>
+	<th>Expense Amount</th>
+	<th>Category</th>
+	<th>Expense Note</th>
+	<th>Action</th>
+	</tr>
+	</thead>
+	<!-- work -->
+	<tbody>
+	<tr th:each="expense : ${listExpenses}">
+	<td th:text="${expense.id}"></td>
+	<td th:text="${expense.expenseDate}"></td>
+	<td th:text="${expense.expenseAmount}"></td>
+	<td th:text="${expense.category.name}"></td>
+	<td th:text="${expense.expenseNote}"></td>
+	<td>
+		<a th:href="@{'/expenses/edit/' + ${expense.id}}">Edit</a> 
+		&nbsp;
+		&nbsp;
+	<a th:href="@{'/expenses/delete/' + ${expense.id}}">Delete</a> </td>
+	</tr>
+	</tbody>
+	</table>
+	    </div>
+	</div>
+
+	<span id= "val"> This is your money </span>	
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	 
+
+
+	
+	<!---->
+	
+	<script>
+	
+	
+ $(document).ready(function () {
+    // Create DataTable
+    var table = $('#table').DataTable({
+      //  dom: 'Pfrtip',
+    });
+ 
+    // Create the chart with initial data
+    var container = $('<div/>').insertBefore(table.table().container());
+ 
+    var chart = Highcharts.chart(container[0], {
+        chart: {
+            type: 'pie',
+        },
+        title: {
+            text: 'Categories Spending',
+        },
+        series: [
+            {
+                data: chartData(table),
+            },
+        ],
+    });
+ 
+    // On each draw, update the data in the chart
+    table.on('draw', function () {
+        chart.series[0].setData(chartData(table));
+    });
+});
+ 
+function chartData(table) {
+    var counts = {};
+ 
+    // Count the number of entries for each position
+    table
+        .column(3, { search: 'applied' })
+        .data()
+        .each(function (val) {
+            if (counts[val]) {
+                counts[val] += 1;
+            } else {
+                counts[val] = 1;
+            }
+        });
+ 
+    // And map it to the format highcharts uses
+    return $.map(counts, function (val, key) {
+        return {
+            name: key,
+            y: val,
+        };
+    });
+}
+	
+	 </script>
+	<!---->
+
+	</body>
+	</html>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

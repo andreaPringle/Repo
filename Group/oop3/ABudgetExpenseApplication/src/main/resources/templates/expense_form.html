@@ -1,0 +1,230 @@
+	<!DOCTYPE html>
+	<html  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>Spendi.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css" />
+	  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	
+	
+	<style>
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 8px;
+ background-color: teal;
+ color: #fff;
+}
+h4{
+font-weight: bold;
+font-size: 30px;
+padding: 50px;
+}
+h1{
+
+font-size: 68px;
+}
+h2{
+font-style: italic;
+font-size: 38px;
+}
+h3{
+
+font-size: 60px;
+}
+.logo {
+ font-size: 38px;
+}
+body {
+ font-family: Arial;
+ text-align:center;
+ 
+}
+
+
+a {
+ text-decoration: none;
+ padding: 5px 14px;
+}
+
+
+li {
+ list-style: none;
+}
+
+
+
+.w3-container {
+ display: flex;
+ gap: 0.10em;
+ font-size: 16px;
+}
+#how-it-works {
+padding: 120px;
+}
+
+#section1 {
+padding: 150px;
+}
+
+p{
+font-size: 25px;
+}
+p.intro{
+font-size: 30px;
+font-style: italic;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  display: block;
+}
+
+.col-form-label col-sm-4{
+font-size: 50px;
+}
+
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+ <div class="logo">Spendi</div>
+<div class="w3-container">
+<div class="w3-bar w3-light-grey">
+
+   <a class="w3-bar-item w3-button" th:href="@{/home}">Home</a>
+    <a th:href="@{/home}" href="#how-it-works" class="w3-bar-item w3-button">How it works</a>
+     
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Expense</button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+       <a th:href="@{/expense/new}" class="w3-bar-item w3-button">Create an expense</a>
+       <a th:href="@{/expenses}" class="w3-bar-item w3-button">Your expenses</a>
+        <a  th:href="@{/category/new}" class="w3-bar-item w3-button">Create a customize category</a>
+      </div>
+      
+    </div>
+    <div class= "w3-bar-item w3-button">
+			<form th:action="@{/logout}" method="post">
+				
+				<input type="submit" value="Sign Out" />
+			</form>
+			</div>
+  </div>
+  
+  </div>
+  
+  </nav>
+	<br/> <br/> <br/>
+	<div class="container text-center">
+		<div th:if="${expense.id == null}"><h2> New Expense</h2></div >
+		<br/>
+			<div th:unless="${expense.id == null}"><h1> Edit Expense</h1></div >
+	 <form th:action="@{/expense/save}" th:object="${expense}" method="post"
+	 style="max-width: 600px; margin: 0 auto;"> 
+	 <input type="hidden"  th:field="*{id}"  th:value="${expense.id}" />
+	 	 <div class="m-3" >
+	 
+	 <div class="form-group row">
+	 <label style="font-size: 25px;" class="col-form-label col-sm-4" > Expense Date:</label >
+	 <div class= "col-sm-8">
+	 <input type= "date" name="begin" 
+        placeholder="dd-mm-yyyy" value=""
+        th:field="*{expenseDate}" class="form-control" required />
+	 </div>
+	 </div>
+	 
+	  <div class="form-group row">
+	 <label style="font-size: 25px;" class=  "col-form-label col-sm-4" > Expense Amount:</label >
+	 <div class= "col-sm-8">
+	 <input type= "number"  step=".01"  th:field="*{expenseAmount}" class="form-control" required />
+	 </div>
+	 </div>
+	 
+	  <div class="form-group row">
+	 <label style="font-size: 25px;" class="col-form-label col-sm-4" > Expense Note:</label >
+	 <div class= "col-sm-8">
+	 <input type= "text" th:field="*{expenseNote}" class="form-control" required />
+	 </div>
+	 </div>
+	 
+	 
+	  
+	  <div class="form-group row">
+	 <label style="font-size: 25px;"class="col-form-label col-sm-4" > Category:</label >
+	 <div class= "col-sm-8">
+	<select th:field="*{category}" class="form-control"> 
+  
+
+	<th:block th:each="cat : ${listCategories}">
+	<option th:text="${cat.name}" th:value="${cat.id}"/>
+		</th:block>
+	
+	</select>
+	 </div>
+	 </div>
+	 	 
+	 
+	 <div>
+	 <button type="submit" class="btn btn-primary">Save</button>
+	 </div>
+	 </div >
+	 </form>
+	 </div>
+	 
+	 
+	</body>
+	</html>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

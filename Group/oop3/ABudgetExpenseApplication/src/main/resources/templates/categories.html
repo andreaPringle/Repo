@@ -1,0 +1,202 @@
+	<!DOCTYPE html>
+	<html  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="ISO-8859-1">
+<title>Spendi.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css" />
+	  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	
+	
+	<style>
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 8px;
+ background-color: teal;
+ color: #fff;
+}
+h4{
+font-weight: bold;
+font-size: 30px;
+padding: 50px;
+}
+h1{
+
+font-size: 68px;
+}
+h2{
+font-style: italic;
+font-size: 38px;
+}
+h3{
+
+font-size: 60px;
+}
+.logo {
+ font-size: 38px;
+}
+body {
+ font-family: Arial;
+ text-align:center;
+ 
+}
+
+
+a {
+ text-decoration: none;
+ padding: 5px 14px;
+}
+
+
+li {
+ list-style: none;
+}
+
+
+
+.w3-container {
+ display: flex;
+ gap: 0.10em;
+ font-size: 16px;
+}
+#how-it-works {
+padding: 120px;
+}
+
+#section1 {
+padding: 150px;
+}
+
+p{
+font-size: 25px;
+}
+p.intro{
+font-size: 30px;
+font-style: italic;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  display: block;
+}
+#cat{
+padding: 100px;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+ <div class="logo">Spendi</div>
+<div class="w3-container">
+<div class="w3-bar w3-light-grey">
+
+   <a class="w3-bar-item w3-button" th:href="@{/home}">Home</a>
+    <a th:href="@{/home}" href="#how-it-works" class="w3-bar-item w3-button">How it works</a>
+     
+    <div class="w3-dropdown-hover">
+      <button class="w3-button">Expense</button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+       <a th:href="@{/expense/new}" class="w3-bar-item w3-button">Create an expense</a>
+       <a th:href="@{/expenses}" class="w3-bar-item w3-button">Your expenses</a>
+        <a href="@{/category/new}" class="w3-bar-item w3-button">Create a customize category</a>
+      </div>
+      
+    </div>
+    <div class= "w3-bar-item w3-button">
+			<form th:action="@{/logout}" method="post">
+				
+				<input type="submit" value="Sign Out" />
+			</form>
+			</div>
+  </div>
+  
+  </div>
+  
+  </nav>
+	
+	<div class="container text-center">
+		<div id="cat"><h2>Category List</h2></div>
+	 <br/> <br/>
+	<div>
+	<table class= "table table-bordered">
+	<thead class"thead-dark">
+	<tr>
+	<th>ID</th>
+	<th>Name</th>
+	</tr>
+	</thead>
+	<tbody>
+	
+	<tr th:each="category : ${listCategories}">
+	
+	
+	
+	<td th:text="${category.id}"></td>
+	<td th:text="${category.name}"></td>
+	
+	</tr>
+	
+	
+	
+	</tbody>
+	</table>
+	
+	 
+	 
+	    </div>
+	</div>
+	</body>
+	</html>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
